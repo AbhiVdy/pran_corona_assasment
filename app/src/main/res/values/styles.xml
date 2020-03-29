@@ -8,4 +8,90 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="styleQuestion">
+        <item name="android:background">@drawable/bg_textblue</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/margin_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_5dp</item>
+    </style>
+
+    <style name="styleOptions">
+        <item name="android:layout_marginStart">@dimen/margin_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_5dp</item>
+        <item name="android:background">@drawable/bg_textwhite</item>
+        <item name="android:padding">@dimen/padding_10dp</item>
+        <item name="android:textColor">@color/txtcolor</item>
+    </style>
+
+    <style name="styleOptionSelected">
+        <item name="android:layout_marginStart">@dimen/margin_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_5dp</item>
+        <item name="android:background">@drawable/bg_textselected</item>
+        <item name="android:padding">@dimen/padding_10dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="styleTravelOptions" parent="styleOptions">
+        <item name="android:layout_marginTop">@dimen/margin_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_5dp</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="styleOptionLayout">
+        <item name="android:layout_marginStart">@dimen/margin_10dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_10dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_5dp</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="styleSelectBtn">
+        <item name="android:layout_marginStart">@dimen/margin_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_5dp</item>
+        <item name="android:background">@drawable/layout_button_confirm</item>
+        <item name="android:padding">@dimen/padding_10dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="styleRiskAssasment">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/margin_10dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="styleAsmtInstruct">
+        <item name="android:textSize">@dimen/text_15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/charcoalGrey</item>
+        <item name="android:layout_marginStart">@dimen/margin_5dp</item>
+        <item name="android:layout_marginEnd">@dimen/margin_5dp</item>
+        <item name="android:layout_marginTop">@dimen/margin_5dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_5dp</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="styleCardView" parent="CardView">
+        <item name="android:layout_margin">@dimen/margin_10dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">@dimen/elevation_4dp</item>
+        <item name="cardCornerRadius">@dimen/elevation_4dp</item>
+    </style>
+
+    <style name="styleAsmtTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_15sp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_2dp</item>
+        <item name="android:textColor">@color/charcoalGrey</item>
+    </style>
+
+    <style name="styleAsmyDescription">
+        <item name="android:textSize">@dimen/text_13sp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_20dp</item>
+        <item name="android:textColor">@color/charcoalGrey</item>
+    </style>
+
 </resources>

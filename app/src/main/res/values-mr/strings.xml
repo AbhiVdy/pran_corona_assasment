@@ -1,13 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">PranCoronaAssasment</string>
-    <string name="select_language" translatable="false">Select Language</string>
-    <string name="lan_english" translatable="false">English</string>
-    <string name="lan_hindi" translatable="false">हिन्दी</string>
-    <string name="lan_marathi" translatable="false">मराठी</string>
-    <string name="title" translatable="false"> CORONAVIRUS RISK SCAN </string>
-
-
-    <string name="question1">Hi! Our coronavirus disease self \n assessment scan has been developed \n on the basis of guidelines from the \n WHO and MHFW,Governments of India.\n The interaction should not be taken as \n expert medical advice . Any informaton \n you share with us will be kept strictly \n confidential</string>
+    <string name="question1">मराठी मध्ये काहीतरी</string>
     <string name="question2">How old are you?</string>
     <string name="optionAge1">below 15</string>
     <string name="optionAge2">15 - 40</string>
@@ -42,7 +35,7 @@
     <string name="historyoftravelormeeting"> History of travel or meeting in affected \n geographical areea in last 14 days</string>
     <string name="closecontact"> Close contact with confirmed COVID in last 14 days</string>
     <string name="historyofcondition"> Do you have history of any of these\n conditions(mark all those applicable)</string>
-    <string name="diabtes"> Diabetes</string>
+    <string name="diabtes"> Diadetes</string>
     <string name="highbloodpressure"> High blood Pressure</string>
     <string name="heartdisease"> Heart Disease</string>
     <string name="kidneydisease"> Kidney Disease</string>
