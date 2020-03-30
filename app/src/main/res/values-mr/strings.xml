@@ -1,68 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="question1">मराठी मध्ये काहीतरी</string>
-    <string name="question2">How old are you?</string>
-    <string name="optionAge1">below 15</string>
+    <string name="question1"> हाय! आमचे कोरोनाव्हायरस रोग आत्मनिर्धारण स्कॅन डब्ल्यूएचओ आणि एमओएचएफडब्ल्यू, भारत सरकारच्या मार्गदर्शक तत्त्वांच्या आधारे विकसित केले गेले आहे. परस्परसंवाद तज्ञ वैद्यकीय सल्ला म्हणून घेऊ नये. आपण आमच्याबरोबर सामायिक केलेली कोणतीही माहिती काटेकोरपणे गुप्त ठेवली जाईल</string>
+
+    <string name="question2"> तुमचे वय काय आहे?</string>
+    <string name="optionAge1">वय 1 ते 15 पर्यंत</string>
     <string name="optionAge2">15 - 40</string>
     <string name="optionAge3">41 - 60</string>
-    <string name="optionAge4">Above 60</string>
-    <string name="gender">Please select your gender</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
-    <string name="other">Others</string>
-    <string name="question3">Please let us know your current body \n temperature in degree Fahrenheit \n (Normal body temperature is 98.6°F):</string>
-    <string name="normal">Normal(96°F-98.6°F)</string>
-    <string name="fever">Fever(98.6°F-102°F)</string>
-    <string name="highfever">High Fever(>102°F)</string>
-    <string name="dontknow">Dont Know</string>
-    <string name="question4">Are you experiencing any of the \n symptoms below (mark all those \n applicable)</string>
-    <string name="drycough">Dry Cough</string>
-    <string name="Loss">Loss or diminished sense of smell</string>
-    <string name="sorethroat">Sore throat</string>
-    <string name="weakness">Weakness</string>
-    <string name="change">Change in Appetite</string>
-    <string name="question5">Additionally, please verify if you are \n Experiencing any of the symptoms \n below (mark all those applicable)</string>
-    <string name="moderatetosevercough">Moderate to Severe Cough</string>
-    <string name="Feelingbreathless">Feeling Breathless</string>
-    <string name="Difficultyinbreathing">Difficulty in Breathing</string>
-    <string name="Drowsiness">Drowsiness</string>
-    <string name="Presistantpain">Persistant pain and Pressure in chest</string>
-    <string name="severweakness"> Severe weakness </string>
-    <string name="noneofthese"> None of these</string>
-    <string name="travelhistory"> Please select your travel and exposure \n details</string>
-    <string name="notravelhistory"> No travel History</string>
-    <string name="nocontactwithanyone"> No contact with anyone with Symptoms</string>
-    <string name="historyoftravelormeeting"> History of travel or meeting in affected \n geographical areea in last 14 days</string>
-    <string name="closecontact"> Close contact with confirmed COVID in last 14 days</string>
-    <string name="historyofcondition"> Do you have history of any of these\n conditions(mark all those applicable)</string>
-    <string name="diabtes"> Diadetes</string>
-    <string name="highbloodpressure"> High blood Pressure</string>
-    <string name="heartdisease"> Heart Disease</string>
-    <string name="kidneydisease"> Kidney Disease</string>
-    <string name="lungdisease"> Lung Disease</string>
-    <string name="stroke">Stroke</string>
-    <string name="reducedimmunity"> Reduced Immunity</string>
-    <string name="confirm"> Confirm </string>
-    <string name="symptomsprogress"> how have your symptoms progressed \n over the last 48 hrs? </string>
-    <string name="improved">Improved</string>
-    <string name="nochange"> No Change</string>
-    <string name="worsened"> Worsened </string>
-    <string name="worsenedconsiderably"> Worsened Considerably</string>
-    <string name="risk_assasment">Risk Assasment</string>
-    <string name="based_on_your_information_we_advise_you_the_following">Based on your information, we advise you the following:</string>
-    <string name="info_one">1. Stay home and take care of yourself in home isolation.</string>
-    <string name="info_two">2. Laboratory tests and imaging are optional (and as per your physician’s advise)</string>
-    <string name="info_three">3. Monitor your symptoms and get medical attention if your situation worsens</string>
-    <string name="basic_protective_measures">Basic protective measures</string>
-    <string name="measure_descrip">Most people who become infected experience mild illness and recover, but it can be more severe for others. Take care of your health and protect others by doing the following:</string>
-    <string name="measure_header_one">Wash your hands frequently</string>
-    <string name="measure_descrip_one">Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.</string>
-    <string name="measure_header_two">Maintain social distancing</string>
-    <string name="measure_descrip_two">Maintain at least 2 metre (6 feet) distance between yourself and anyone who is coughing or sneezing.</string>
-    <string name="measure_header_three">Avoid touching eyes, nose and mouth</string>
-    <string name="measure_descrip_three">Our hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth.</string>
-    <string name="measure_header_four">Practice respiratory hygiene</string>
-    <string name="measure_descrip_four">Make sure you and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.</string>
-    <string name="measure_header_five">If you have fever, cough and difficulty in breathing, seek medical care early</string>
-    <string name="measure_descrip_five">Stay home if you feel unwell. If you have a high fever, moderate to severe cough and difficulty in breathing and it is worsening in short period of time, seek medical asistance and call in advance.</string>
+    <string name="optionAge4"> 60 च्या वर</string>
+    <string name="gender"> कृपया आपले लिंग निवडा </string>
+    <string name="male"> पुरूष किंवा मुलगा </string>
+    <string name="female"> स्त्री किंवा  मुलगी </string>
+    <string name="other"> इतर </string>
+    <string name="question3"> कृपया आपल्या सद्य शरीराचे तापमान डिग्री फॅरेनहाइटमध्ये आम्हाला कळवा (शरीराचे सामान्य तापमान 98.6 ° फॅ आहे):</string>
+    <string name="normal">सामान्य (96 ° फॅ -98.6 ° फॅ)</string>
+    <string name="fever"> ताप (98.6 ° फॅ - 102 ° फॅ)</string>
+    <string name="highfever"> उच्च ताप (> १०२ ° फॅ)</string>
+
+    <string name="dontknow"> माहित नाही</string>
+
+    <string name="question4"> आपण खाली कोणत्याही लक्षणांचा अनुभव घेत आहात (त्या लागू असलेल्या सर्व चिन्हांकित करा)</string>
+    <string name="drycough"> कोरडा खोकला</string>
+
+    <string name="Loss"> वास कमी होणे किंवा गंध कमी होणे </string>
+    <string name="sorethroat"> घसा खवखवणे </string>
+    <string name="weakness"> अशक्तपणा </string>
+    <string name="change"> भूक न लागणे</string>
+
+    <string name="question5"> याव्यतिरिक्त, कृपया आपण खाली कोणत्याही लक्षणांचा अनुभव घेत असाल तर सत्यापित करा (त्या लागू असलेल्या सर्व चिन्हांकित करा)</string>
+    <string name="moderatetosevercough"> मध्यम ते तीव्र खोकला</string>
+
+    <string name="Feelingbreathless"> धाप लागणे </string>
+
+    <string name="Difficultyinbreathing"> श्वास घेण्यात अडचण </string>
+
+    <string name="Drowsiness"> सुस्तपणा </string>
+
+    <string name="Presistantpain"> छातीत सतत वेदना आणि दबाव </string>
+    <string name="severweakness"> तीव्र अशक्तपणा </string>
+
+    <string name="noneofthese"> यापैकी काहीही नाही </string>
+
+    <string name="travelhistory"> कृपया आपला प्रवास आणि प्रदर्शनाचा तपशील निवडा </string>
+
+    <string name="notravelhistory"> प्रवासाचा इतिहास नाही </string>
+    <string name="nocontactwithanyone"> लक्षणे असलेल्या कोणाशीही संपर्क नाही </string>
+    <string name="historyoftravelormeeting"> मागील 14 दिवसात प्रभावित भौगोलिक क्षेत्रातील प्रवास किंवा संमेलनाचा इतिहास </string>
+    <string name="closecontact"> मागील 14 दिवसात पुष्टी झालेल्या COVID-19 रूग्णांशी जवळचा संपर्क</string>
+    <string name="historyofcondition"> आपल्याकडे यापैकी कोणत्याही रोगाचा इतिहास आहे (लागू असलेल्या सर्व चिन्हांकित करा)</string>
+
+    <string name="diabtes"> मधुमेह</string>
+
+    <string name="highbloodpressure"> उच्च रक्तदाब</string>
+
+    <string name="heartdisease"> हृदयरोग </string>
+    <string name="kidneydisease"> मूत्रपिंडाचे आजार </string>\
+
+    <string name="lungdisease"> सीओपीडी / अस्थमा</string>
+
+    <string name="stroke"> स्ट्रोक </string>
+    <string name="reducedimmunity"> कमी रोग प्रतिकारशक्ती </string>
+
+    <string name="confirm"> पुष्टी </string>
+    <string name="symptomsprogress"> गेल्या 48 तासांत आपली लक्षणे कशी आहेत?</string>
+    <string name="improved"> सुधारित </string>
+    <string name="nochange"> काही बदल नाही </string>
+    <string name="worsened"> तीव्रता वाढली </string>
+    <string name="worsenedconsiderably"> बर्‍याच प्रमाणात खराब </string>
+    <string name="risk_assasment"> जोखीमीचे मुल्यमापन </string>
+    <string name="based_on_your_information_we_advise_you_the_following">
+    आपल्या माहितीच्या आधारे, आम्ही आपल्याला पुढील सल्ला देतोः</string>
+    <string name="info_one">1. घरी रहा आणि घराच्या अलगावमध्ये स्वतःची काळजी घ्या.</string>
+    <string name="info_two">2 प्रयोगशाळेतील चाचण्या आणि इमेजिंग पर्यायी आहेत (आणि आपल्या डॉक्टरांच्या सल्ल्यानुसार)</string>
+    <string name="info_three">3 आपली लक्षणे पहा आणि आपली परिस्थिती अधिक गंभीर झाल्यास वैद्यकीय सल्ला घ्या </string>
+
+    <string name="basic_protective_measures"> साधे संरक्षणात्मक उपाय </string>
+
+    <string name="measure_descrip"> बहुतेक लोक संसर्गग्रस्त व्यक्तींना सौम्य आजाराचा अनुभव घेतात आणि बरे होतात, परंतु इतरांसाठी ते अधिक गंभीर असू शकते. आपल्या आरोग्याची काळजी घ्या आणि पुढील गोष्टी करुन इतरांचे संरक्षण करा:</string>
+    <string name="measure_header_one"> आपले हात वारंवार धुवा</string>
+
+    <string name="measure_descrip_one"> आपले हात नियमितपणे अल्कोहोल आधारित हँड्रब
+ हाताने चोळा किंवा साबणाने आणि पाण्याने धुवा.</string>
+    <string name="measure_header_two"> सामाजिक अंतर राखणे </string>
+
+    <string name="measure_descrip_two"> स्वत: मध्ये आणि खोकला किंवा शिंका येत असलेल्या प्रत्येकामध्ये कमीतकमी 2 मीटर (6 फूट) अंतर ठेवा.</string>
+    <string name="measure_header_three"> डोळे, नाक आणि तोंडाला स्पर्श करणे टाळा </string>
+    <string name="measure_descrip_three"> आपले हात बर्‍याच पृष्ठभागास स्पर्श करतात आणि व्हायरस उचलू शकतात. एकदा संसर्ग झाल्यानंतर, हात आपल्या डोळ्यांत, नाकात किंवा तोंडावर विषाणूचे हस्तांतरण करू शकेल.</string>
+    <string name="measure_header_four"> श्वसन स्वच्छतेचा सराव करा </string>
+    <string name="measure_descrip_four">आपण आणि आपल्या आसपासचे लोक, श्वसनाच्या चांगल्या स्वच्छतेचे अनुसरण करा. याचा अर्थ असा की जेव्हा आपण खोकला किंवा शिंकता तेव्हा आपले तोंड आणि नाक आपल्या वाकलेल्या कोपर किंवा ऊतकांनी झाकून टाका. मग वापरलेल्या ऊतकांची त्वरित विल्हेवाट लावा.</string>
+    <string name="measure_header_five">जर आपल्याला ताप, खोकला आणि श्वास घेण्यात त्रास होत असेल तर लवकर वैद्यकीय सेवा घ्या </string>
+    <string name="measure_descrip_five"> आपण अस्वस्थ वाटत असल्यास घरी रहा. जर आपल्याला उच्च ताप असेल तर मध्यम ते गंभीर खोकला आणि श्वास घेण्यात अडचण येत असल्यास आणि थोड्या काळामध्ये ते खराब होत असेल तर वैद्यकीय सहाय्य घ्या.</string>
+    <string name="risk_low">कमी</string>
+    <string name="risk_medium">मध्यम</string>
+    <string name="risk_high">उच्च</string>
+    <string name="btn_retake">पुन्हा चाचणी करा</string>
+    <string name="your_health_matters_to_us">आपले आरोग्य आमच्यासाठी महत्वाचे आहे.</string>
+    <string name="helpline_text">कोविड -१ of चे काही गंभीर लक्षणे असल्यास, राष्ट्रीय हेल्पलाइनवर कॉल करण्यासाठी खालील क्रमांकावर क्लिक करा.</string>
 </resources>

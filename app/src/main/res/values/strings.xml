@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">PranCoronaAssasment</string>
+    <string name="app_name" translatable="false">Pran Health</string>
     <string name="select_language" translatable="false">Select Language</string>
     <string name="lan_english" translatable="false">English</string>
     <string name="lan_hindi" translatable="false">हिन्दी</string>
@@ -7,7 +7,7 @@
     <string name="title" translatable="false"> CORONAVIRUS RISK SCAN </string>
 
 
-    <string name="question1">Hi! Our coronavirus disease self \n assessment scan has been developed \n on the basis of guidelines from the \n WHO and MHFW,Governments of India.\n The interaction should not be taken as \n expert medical advice . Any informaton \n you share with us will be kept strictly \n confidential</string>
+    <string name="question1">Hi! Our coronavirus disease self \n assessment scan has been developed \n on the basis of guidelines from the \n WHO and MOHFW,Governments of India.\n The interaction should not be taken as \n expert medical advice . Any informaton \n you share with us will be kept strictly \n confidential</string>
     <string name="question2">How old are you?</string>
     <string name="optionAge1">below 15</string>
     <string name="optionAge2">15 - 40</string>
@@ -46,7 +46,7 @@
     <string name="highbloodpressure"> High blood Pressure</string>
     <string name="heartdisease"> Heart Disease</string>
     <string name="kidneydisease"> Kidney Disease</string>
-    <string name="lungdisease"> Lung Disease</string>
+    <string name="lungdisease">Asthma</string>
     <string name="stroke">Stroke</string>
     <string name="reducedimmunity"> Reduced Immunity</string>
     <string name="confirm"> Confirm </string>
@@ -55,7 +55,7 @@
     <string name="nochange"> No Change</string>
     <string name="worsened"> Worsened </string>
     <string name="worsenedconsiderably"> Worsened Considerably</string>
-    <string name="risk_assasment">Risk Assasment</string>
+    <string name="risk_assasment">Risk Assessment</string>
     <string name="based_on_your_information_we_advise_you_the_following">Based on your information, we advise you the following:</string>
     <string name="info_one">1. Stay home and take care of yourself in home isolation.</string>
     <string name="info_two">2. Laboratory tests and imaging are optional (and as per your physician’s advise)</string>
@@ -72,4 +72,13 @@
     <string name="measure_descrip_four">Make sure you and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.</string>
     <string name="measure_header_five">If you have fever, cough and difficulty in breathing, seek medical care early</string>
     <string name="measure_descrip_five">Stay home if you feel unwell. If you have a high fever, moderate to severe cough and difficulty in breathing and it is worsening in short period of time, seek medical asistance and call in advance.</string>
+    <string name="risk_low">low</string>
+    <string name="risk_medium">medium</string>
+    <string name="risk_high">high</string>
+    <string name="btn_retake">Retake the test</string>
+    <string name="select_preferred_language" translatable="false">Select Preferred Language</string>
+    <string name="by_pranayu_multispeciality_hospital" translatable="false">by Pranayu Multispeciality Hospital</string>
+    <string name="covid_19_risk_assessment_program" translatable="false">COVID-19 Risk Assessment Program</string>
+    <string name="your_health_matters_to_us">Your health matters to us.</string>
+    <string name="helpline_text">If you have any serious symptoms of COVID-19, click the following number to call the National helpline.</string>
 </resources>

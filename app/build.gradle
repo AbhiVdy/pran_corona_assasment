@@ -29,6 +29,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.41'
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+    implementation 'com.airbnb.android:lottie:3.4.0'
     //Speedometer
     implementation 'com.github.anastr:speedviewlib:1.5.2'
 }

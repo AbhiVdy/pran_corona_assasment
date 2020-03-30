@@ -1,5 +1,6 @@
 package com.pranhealth.coronaassasment
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
@@ -7,11 +8,11 @@ import android.view.View
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-private var defaultLocale: Locale = Locale.ENGLISH
 private lateinit var dataModel: DataModel
 
 private var symptomList = ArrayList<Utils.SymptomsEnum>()
@@ -21,20 +22,32 @@ private var addSymptomsTextList = ArrayList<String>()
 private var historyList = ArrayList<Utils.HistoryEnum>()
 private var historyTextList = ArrayList<String>()
 
+var languageToLoad = ""
+
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val bundle = intent.extras
+        languageToLoad = bundle?.getSerializable("lang") as String
+        val locale = Locale(languageToLoad)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
         dataModel = DataModel()
-        defineListeners()
+        dataModel.clear()
+        symptomList.clear()
+        symptomTextList.clear()
+        addSymptomsList.clear()
+        addSymptomsTextList.clear()
+        historyList.clear()
+        historyTextList.clear()
+        setContentView(R.layout.activity_main)
+        registerListeners()
     }
 
-    private fun defineListeners() {
-        //Lang
-        tvEng.setOnClickListener(this)
-        tvMarathi.setOnClickListener(this)
-        tvHindi.setOnClickListener(this)
+    private fun registerListeners() {
         //Age
         tvBelowFifteen.setOnClickListener(this)
         tvFifteenToForty.setOnClickListener(this)
@@ -57,7 +70,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tvSytmThroat.setOnClickListener(this)
         tvSytmWeak.setOnClickListener(this)
         //Additional Symptoms
-        tvAddSytmBreathing.setOnClickListener(this)
         tvAddSytmBreathless.setOnClickListener(this)
         tvAddSytmChestPain.setOnClickListener(this)
         tvAddSytmCough.setOnClickListener(this)
@@ -87,81 +99,130 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            //Lang
-            R.id.tvEng -> setLang(Utils.LanguageEnum.ENGLISH)
-            R.id.tvMarathi -> setLang(Utils.LanguageEnum.MARATHI)
-            R.id.tvHindi -> setLang(Utils.LanguageEnum.HINDI)
             //Age
-            R.id.tvBelowFifteen -> updateAgeLayout(Utils.AgeEnum.BELOW_FIFTEEN)
-            R.id.tvFifteenToForty -> updateAgeLayout(Utils.AgeEnum.FIFTEEN_TO_FORTY)
-            R.id.tvFortyToSixty -> updateAgeLayout(Utils.AgeEnum.FORTY_TO_SIXTY)
-            R.id.tvAbvSixty -> updateAgeLayout(Utils.AgeEnum.ABOVE_SIXTY)
+            R.id.tvBelowFifteen -> updateAgeLayout(Utils.AgeEnum.BELOW_FIFTEEN, tvBelowFifteen)
+            R.id.tvFifteenToForty -> updateAgeLayout(Utils.AgeEnum.FIFTEEN_TO_FORTY, tvFifteenToForty)
+            R.id.tvFortyToSixty -> updateAgeLayout(Utils.AgeEnum.FORTY_TO_SIXTY, tvFortyToSixty)
+            R.id.tvAbvSixty -> updateAgeLayout(Utils.AgeEnum.ABOVE_SIXTY, tvAbvSixty)
             //Gender
-            R.id.tvGenderMale -> updateGenderLayout(Utils.GenderEnum.MALE)
-            R.id.tvGenderFemale -> updateGenderLayout(Utils.GenderEnum.FEMALE)
-            R.id.tvGenderOther -> updateGenderLayout(Utils.GenderEnum.OTHER)
+            R.id.tvGenderMale -> updateGenderLayout(Utils.GenderEnum.MALE, tvGenderMale)
+            R.id.tvGenderFemale -> updateGenderLayout(Utils.GenderEnum.FEMALE, tvGenderFemale)
+            R.id.tvGenderOther -> updateGenderLayout(Utils.GenderEnum.OTHER, tvGenderOther)
             //Fever
-            R.id.tvFeverNormal -> updateFeverLayout(Utils.FeverEnum.NORMAL)
-            R.id.tvFever -> updateFeverLayout(Utils.FeverEnum.FEVER)
-            R.id.tvFeverHigh -> updateFeverLayout(Utils.FeverEnum.HIGH_FEVER)
-            R.id.tvFeverNext -> updateFeverLayout(null)
+            R.id.tvFeverNormal -> updateFeverLayout(Utils.FeverEnum.NORMAL, tvFeverNormal)
+            R.id.tvFever -> updateFeverLayout(Utils.FeverEnum.FEVER, tvFever)
+            R.id.tvFeverHigh -> updateFeverLayout(Utils.FeverEnum.HIGH_FEVER, tvFeverHigh)
+            R.id.tvFeverNext -> updateFeverLayout(null, tvFeverNext)
             //Symptoms
             R.id.tvSytmAppetite -> updateSymptomLayout(Utils.SymptomsEnum.APPETITE, tvSytmAppetite)
             R.id.tvSytmCough -> updateSymptomLayout(Utils.SymptomsEnum.COUGH, tvSytmCough)
             R.id.tvSytmSmell -> updateSymptomLayout(Utils.SymptomsEnum.SMELL, tvSytmSmell)
             R.id.tvSytmThroat -> updateSymptomLayout(Utils.SymptomsEnum.THROAT, tvSytmThroat)
             R.id.tvSytmWeak -> updateSymptomLayout(Utils.SymptomsEnum.WEAKNESS, tvSytmWeak)
-            R.id.tvSytmNext -> updateSymptomLayout(null, null)
+            R.id.tvSytmNext -> updateSymptomLayout(null, tvSytmNext)
             //Additional Symptoms
-            R.id.tvAddSytmBreathing -> updateAdditionalSymptomsLayout(Utils.AdditionalSymptomsEnum.BREATHING, tvAddSytmBreathing)
             R.id.tvAddSytmBreathless -> updateAdditionalSymptomsLayout(Utils.AdditionalSymptomsEnum.BREATHLESS, tvAddSytmBreathless)
             R.id.tvAddSytmChestPain -> updateAdditionalSymptomsLayout(Utils.AdditionalSymptomsEnum.CHEST_PAIN, tvAddSytmChestPain)
             R.id.tvAddSytmCough -> updateAdditionalSymptomsLayout(Utils.AdditionalSymptomsEnum.COUGH, tvAddSytmCough)
             R.id.tvAddSytmDrowsiness -> updateAdditionalSymptomsLayout(Utils.AdditionalSymptomsEnum.DROWSINESS, tvAddSytmDrowsiness)
             R.id.tvAddSytmWeakness -> updateAdditionalSymptomsLayout(Utils.AdditionalSymptomsEnum.WEAKNESS, tvAddSytmWeakness)
-            R.id.tvAddSytmNext -> updateAdditionalSymptomsLayout(null, null)
+            R.id.tvAddSytmNext -> updateAdditionalSymptomsLayout(null, tvAddSytmNext)
             //Travel
-            R.id.tvTravelNone -> updateTravelHistoryLayout(Utils.TravelEnum.NO_HISTORY)
-            R.id.tvTravelNoContact -> updateTravelHistoryLayout(Utils.TravelEnum.NO_CONTACT_WITH_SYMPTOMS)
-            R.id.tvTravel -> updateTravelHistoryLayout(Utils.TravelEnum.TRAVEL_HISTORY)
-            R.id.tvTravelContact -> updateTravelHistoryLayout(Utils.TravelEnum.CONTACT_HISTORY)
+            R.id.tvTravelNone -> updateTravelHistoryLayout(Utils.TravelEnum.NO_HISTORY, tvTravelNone)
+            R.id.tvTravelNoContact -> updateTravelHistoryLayout(Utils.TravelEnum.NO_CONTACT_WITH_SYMPTOMS, tvTravelNoContact)
+            R.id.tvTravel -> updateTravelHistoryLayout(Utils.TravelEnum.TRAVEL_HISTORY, tvTravel)
+            R.id.tvTravelContact -> updateTravelHistoryLayout(Utils.TravelEnum.CONTACT_HISTORY, tvTravelContact)
             //History
             R.id.tvHisBP -> updateHistoryLayout(Utils.HistoryEnum.HIGH_BP, tvHisBP)
             R.id.tvHisDiabtes -> updateHistoryLayout(Utils.HistoryEnum.DIABETES, tvHisDiabtes)
             R.id.tvHisHeart -> updateHistoryLayout(Utils.HistoryEnum.HEART_DISEASE, tvHisHeart)
             R.id.tvHisImmunity -> updateHistoryLayout(Utils.HistoryEnum.REDUCED_IMMUNITY, tvHisImmunity)
             R.id.tvHisKidney -> updateHistoryLayout(Utils.HistoryEnum.KIDNEY, tvHisKidney)
-            R.id.tvHisLungs -> updateHistoryLayout(Utils.HistoryEnum.LUNGS, tvHisLungs)
+            R.id.tvHisLungs -> updateHistoryLayout(Utils.HistoryEnum.ASTHAMA, tvHisLungs)
             R.id.tvHisStroke -> updateHistoryLayout(Utils.HistoryEnum.STROKE, tvHisStroke)
-            R.id.tvHistNext -> updateHistoryLayout(null, null)
+            R.id.tvHistNext -> updateHistoryLayout(null, tvHistNext)
             //Progress
-            R.id.tvProImproved -> updateHealthProgress(Utils.ProgressEnum.IMPROVED)
-            R.id.tvProNoChange -> updateHealthProgress(Utils.ProgressEnum.NO_CHANGE)
-            R.id.tvProWorsend -> updateHealthProgress(Utils.ProgressEnum.WORSEND)
-            R.id.tvProWorsendCons -> updateHealthProgress(Utils.ProgressEnum.WORSEND_CONSIDARABLY)
+            R.id.tvProImproved -> updateHealthProgress(Utils.ProgressEnum.IMPROVED, tvProImproved)
+            R.id.tvProNoChange -> updateHealthProgress(Utils.ProgressEnum.NO_CHANGE, tvProNoChange)
+            R.id.tvProWorsend -> updateHealthProgress(Utils.ProgressEnum.WORSEND, tvProWorsend)
+            R.id.tvProWorsendCons -> updateHealthProgress(Utils.ProgressEnum.WORSEND_CONSIDARABLY, tvProWorsendCons)
         }
     }
 
-    private fun updateHealthProgress(value: Utils.ProgressEnum) {
-        tvProImproved.visibility = View.GONE
-        tvProNoChange.visibility = View.GONE
-        tvProWorsend.visibility = View.GONE
-        tvProWorsendCons.visibility = View.GONE
-        when (value) {
-            Utils.ProgressEnum.IMPROVED -> tvProImproved.visibility = View.VISIBLE
-            Utils.ProgressEnum.NO_CHANGE -> tvProNoChange.visibility = View.VISIBLE
-            Utils.ProgressEnum.WORSEND -> tvProWorsend.visibility = View.VISIBLE
-            Utils.ProgressEnum.WORSEND_CONSIDARABLY -> tvProWorsendCons.visibility = View.VISIBLE
+    private fun calculateRiskAssasment() {
+        var symptomsCount = 0
+        var additionalSymptomCount = 0
+        var medHistoryCount = 0
+        var ageCount = 0
+        var feverCount = 0
+        var travelCount = 0
+        var progressCount = 0
+
+        dataModel.age?.let {
+            ageCount = it.value
         }
+        dataModel.fever?.let {
+            feverCount = it.value
+        }
+        dataModel.travelHistory?.let {
+            travelCount = it.value
+        }
+        dataModel.progress?.let {
+            progressCount = it.value
+        }
+
+        dataModel.symptoms?.let {
+            for (item in it)
+                symptomsCount += item.value
+        }
+
+        dataModel.additionalSymptoms?.let {
+            for (item in it)
+                additionalSymptomCount += item.value
+        }
+
+        dataModel.medHistory?.let {
+            for (item in it)
+                medHistoryCount += item.value
+        }
+
+        val finalCount = ageCount + feverCount + symptomsCount + additionalSymptomCount + travelCount + medHistoryCount + progressCount
+        val status: Utils.RiskEnum
+        status = when (finalCount) {
+            in 8..15 -> Utils.RiskEnum.MEDIUM
+            in 15..30 -> Utils.RiskEnum.HIGH
+            else -> Utils.RiskEnum.LOW
+
+        }
+        val intent = Intent(this, AssasmentActivity::class.java)
+        intent.putExtra("lang", languageToLoad)
+        intent.putExtra("status", status)
+        startActivity(intent)
+    }
+
+    private fun updateHealthProgress(value: Utils.ProgressEnum, view: TextView) {
+        tvProgressAns.text = view.text
+        tvProgressAns.visibility = View.VISIBLE
+        llProgressOptions.visibility = View.GONE
         dataModel.progress = value
-        //Navigate TO next screen
+        calculateRiskAssasment()
     }
 
-    private fun updateHistoryLayout(value: Utils.HistoryEnum?, view: TextView?) {
-        value?.let {
-            historyList.add(it)
-            historyTextList.add(view?.text.toString())
-            tvHistNext.text = "Confirm"
+    private fun updateHistoryLayout(value: Utils.HistoryEnum?, view: TextView) {
+        value?.let { enumObj ->
+            if (historyList.contains(enumObj)) {
+                historyList.remove(enumObj)
+                historyTextList.remove(view.text.toString())
+                setUnSelectedLayout(view)
+            } else {
+                historyList.add(enumObj)
+                historyTextList.add(view.text.toString())
+                setSelectedLayout(view)
+            }
+            if (historyList.size > 0)
+                tvHistNext.text = getString(R.string.confirm)
+            else
+                tvHistNext.text = getString(R.string.noneofthese)
         } ?: run {
             if (historyTextList.size > 0) {
                 val strBuilder = StringBuilder()
@@ -170,57 +231,42 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     strBuilder.append(", ")
                 }
                 val concatStr = strBuilder.toString()
-                tvHisBP.text = concatStr.subSequence(0, concatStr.length - 2)
-                tvHisDiabtes.visibility = View.GONE
-                llHistory2.visibility = View.GONE
-                llHistory3.visibility = View.GONE
-                llHistory4.visibility = View.GONE
+                tvHistoryAns.text = concatStr.subSequence(0, concatStr.length - 2)
             } else {
-                llHistory1.visibility = View.GONE
-                llHistory2.visibility = View.GONE
-                llHistory3.visibility = View.GONE
-                tvHisImmunity.visibility = View.GONE
+                tvHistoryAns.text = view.text
             }
+            tvHistoryAns.visibility = View.VISIBLE
+            llHistoryOptions.visibility = View.GONE
             dataModel.medHistory = historyList
             llProgress.visibility = View.VISIBLE
             svMain.focusOnView(llProgress)
         }
     }
 
-    private fun updateTravelHistoryLayout(value: Utils.TravelEnum) {
-        when (value) {
-            Utils.TravelEnum.NO_HISTORY -> {
-                tvTravelNoContact.visibility = View.GONE
-                tvTravel.visibility = View.GONE
-                tvTravelContact.visibility = View.GONE
-            }
-            Utils.TravelEnum.NO_CONTACT_WITH_SYMPTOMS -> {
-                tvTravelNone.visibility = View.GONE
-                tvTravel.visibility = View.GONE
-                tvTravelContact.visibility = View.GONE
-            }
-            Utils.TravelEnum.TRAVEL_HISTORY -> {
-                tvTravelNone.visibility = View.GONE
-                tvTravelNoContact.visibility = View.GONE
-                tvTravelContact.visibility = View.GONE
-            }
-            Utils.TravelEnum.CONTACT_HISTORY -> {
-                tvTravelNone.visibility = View.GONE
-                tvTravelNoContact.visibility = View.GONE
-                tvTravel.visibility = View.GONE
-            }
-        }
+    private fun updateTravelHistoryLayout(value: Utils.TravelEnum, view: TextView) {
+        tvTravelAns.text = view.text
+        tvTravelAns.visibility = View.VISIBLE
+        llTravelOptions.visibility = View.GONE
         dataModel.travelHistory = value
         llHistory.visibility = View.VISIBLE
         svMain.focusOnView(llHistory)
     }
 
-    private fun updateAdditionalSymptomsLayout(value: Utils.AdditionalSymptomsEnum?, view: TextView?) {
-        value?.let {
-            addSymptomsList.add(it)
-            addSymptomsTextList.add(view?.text.toString())
-            view?.setTextAppearance(R.style.styleSelectBtn)
-            tvAddSytmNext.text = "Confirm"
+    private fun updateAdditionalSymptomsLayout(value: Utils.AdditionalSymptomsEnum?, view: TextView) {
+        value?.let { enumObj ->
+            if (addSymptomsList.contains(enumObj)) {
+                addSymptomsList.remove(enumObj)
+                addSymptomsTextList.remove(view.text.toString())
+                setUnSelectedLayout(view)
+            } else {
+                addSymptomsList.add(enumObj)
+                addSymptomsTextList.add(view.text.toString())
+                setSelectedLayout(view)
+            }
+            if (addSymptomsList.size > 0)
+                tvAddSytmNext.text = getString(R.string.confirm)
+            else
+                tvAddSytmNext.text = getString(R.string.noneofthese)
         } ?: run {
             if (addSymptomsTextList.size > 0) {
                 val strBuilder = StringBuilder()
@@ -229,37 +275,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     strBuilder.append(", ")
                 }
                 val concatStr = strBuilder.toString()
-                tvAddSytmBreathless.text = concatStr.substring(0, concatStr.length - 2)
-                tvAddSytmCough.visibility = View.GONE
-                llAddSytm2.visibility = View.GONE
-                llAddSytm3.visibility = View.GONE
-                llAddSytm4.visibility = View.GONE
+                tvAddSytmAns.text = concatStr.substring(0, concatStr.length - 2)
             } else {
-                llAddSytm1.visibility = View.GONE
-                llAddSytm2.visibility = View.GONE
-                llAddSytm3.visibility = View.GONE
-                tvAddSytmWeakness.visibility = View.GONE
+                tvAddSytmAns.text = view.text
             }
+            tvAddSytmAns.visibility = View.VISIBLE
+            llAddSytmOptions.visibility = View.GONE
             dataModel.additionalSymptoms = addSymptomsList
             llTravel.visibility = View.VISIBLE
             svMain.focusOnView(llTravel)
         }
     }
 
-    private fun updateSymptomLayout(value: Utils.SymptomsEnum?, view: TextView?) {
-        value?.let {
-            when (it) {
-                Utils.SymptomsEnum.APPETITE,
-                Utils.SymptomsEnum.SMELL,
-                Utils.SymptomsEnum.THROAT,
-                Utils.SymptomsEnum.WEAKNESS,
-                Utils.SymptomsEnum.COUGH -> {
-                    symptomList.add(it)
-                    symptomTextList.add(view?.text.toString())
-                    view?.setTextAppearance(R.style.styleSelectBtn)
-                    tvSytmNext.text = "Confirm"
-                }
+    private fun updateSymptomLayout(value: Utils.SymptomsEnum?, view: TextView) {
+        value?.let { enumObj ->
+            if (symptomList.contains(enumObj)) {
+                symptomList.remove(enumObj)
+                symptomTextList.remove(view.text.toString())
+                setUnSelectedLayout(view)
+            } else {
+                symptomList.add(enumObj)
+                symptomTextList.add(view.text.toString())
+                setSelectedLayout(view)
             }
+            if (symptomList.size > 0)
+                tvSytmNext.text = getString(R.string.confirm)
+            else
+                tvSytmNext.text = getString(R.string.noneofthese)
+
         } ?: run {
             if (symptomTextList.size > 0) {
                 val strBuilder = StringBuilder()
@@ -268,117 +311,46 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     strBuilder.append(", ")
                 }
                 val concatStr = strBuilder.toString()
-                tvSytmSmell.text = concatStr.substring(0, concatStr.length - 2)
-                tvSytmCough.visibility = View.GONE
-                llSytmLayout2.visibility = View.GONE
-                llSytmLayout3.visibility = View.GONE
+                tvSymptomsAns.text = concatStr.substring(0, concatStr.length - 2)
             } else {
-                llSytmLayout1.visibility = View.GONE
-                llSytmLayout2.visibility = View.GONE
+                tvSymptomsAns.text = view.text
             }
-            dataModel.sumptons = symptomList
+            tvSymptomsAns.visibility = View.VISIBLE
+            llSymptomsOptions.visibility = View.GONE
+            dataModel.symptoms = symptomList
             llAddSymptoms.visibility = View.VISIBLE
             svMain.focusOnView(llAddSymptoms)
         }
     }
 
-    private fun updateFeverLayout(value: Utils.FeverEnum?) {
+    private fun updateFeverLayout(value: Utils.FeverEnum?, view: TextView) {
         value?.let {
-            when (it) {
-                Utils.FeverEnum.FEVER,
-                Utils.FeverEnum.NORMAL -> {
-                    tvFeverNormal.visibility = View.GONE
-                    llFeverOption2.visibility = View.GONE
-                }
-                Utils.FeverEnum.HIGH_FEVER -> {
-                    llFeverOption1.visibility = View.GONE
-                    tvFeverNext.visibility = View.GONE
-                }
-            }
             dataModel.fever = it
-        } ?: run {
-            llFeverOption1.visibility = View.GONE
-            tvFeverHigh.visibility = View.GONE
         }
+        tvFeverAns.text = view.text
+        tvFeverAns.visibility = View.VISIBLE
+        llFeverOption1.visibility = View.GONE
+        llFeverOption2.visibility = View.GONE
         llSymptoms.visibility = View.VISIBLE
         svMain.focusOnView(llSymptoms)
     }
 
-    private fun updateGenderLayout(value: Utils.GenderEnum) {
-        when (value) {
-            Utils.GenderEnum.MALE -> {
-                dataModel.gender = Utils.GenderEnum.MALE
-                tvGenderFemale.visibility = View.GONE
-                tvGenderOther.visibility = View.GONE
-            }
-            Utils.GenderEnum.FEMALE -> {
-                dataModel.gender = Utils.GenderEnum.FEMALE
-                tvGenderMale.visibility = View.GONE
-                tvGenderOther.visibility = View.GONE
-            }
-            Utils.GenderEnum.OTHER -> {
-                dataModel.gender = Utils.GenderEnum.MALE
-                tvGenderMale.visibility = View.GONE
-                tvGenderFemale.visibility = View.GONE
-            }
-        }
+    private fun updateGenderLayout(value: Utils.GenderEnum, view: TextView) {
+        tvGenderAns.text = view.text
+        tvGenderAns.visibility = View.VISIBLE
+        llGenderOptions.visibility = View.GONE
+        dataModel.gender = value
         llFever.visibility = View.VISIBLE
         svMain.focusOnView(llFever)
     }
 
-    private fun updateAgeLayout(value: Utils.AgeEnum) {
-        when (value) {
-            Utils.AgeEnum.BELOW_FIFTEEN -> {
-                tvFifteenToForty.visibility = View.GONE
-                tvFortyToSixty.visibility = View.GONE
-                tvAbvSixty.visibility = View.GONE
-            }
-            Utils.AgeEnum.FIFTEEN_TO_FORTY -> {
-                tvBelowFifteen.visibility = View.GONE
-                tvFortyToSixty.visibility = View.GONE
-                tvAbvSixty.visibility = View.GONE
-            }
-            Utils.AgeEnum.FORTY_TO_SIXTY -> {
-                tvBelowFifteen.visibility = View.GONE
-                tvFifteenToForty.visibility = View.GONE
-                tvAbvSixty.visibility = View.GONE
-            }
-            Utils.AgeEnum.ABOVE_SIXTY -> {
-                tvBelowFifteen.visibility = View.GONE
-                tvFifteenToForty.visibility = View.GONE
-                tvFortyToSixty.visibility = View.GONE
-            }
-        }
+    private fun updateAgeLayout(value: Utils.AgeEnum, view: TextView) {
+        tvAgeAns.text = view.text
+        tvAgeAns.visibility = View.VISIBLE
+        llAgeOptions.visibility = View.GONE
         dataModel.age = value
         llGender.visibility = View.VISIBLE
         svMain.focusOnView(llGender)
-    }
-
-    private fun setLang(value: Utils.LanguageEnum) {
-        when (value) {
-            Utils.LanguageEnum.ENGLISH -> {
-                defaultLocale = Locale("en")
-                updateLocale(defaultLocale.language)
-                tvEng.visibility = View.VISIBLE
-                tvMarathi.visibility = View.GONE
-                tvHindi.visibility = View.GONE
-            }
-            Utils.LanguageEnum.MARATHI -> {
-                defaultLocale = Locale("mr")
-                updateLocale(defaultLocale.language)
-                tvEng.visibility = View.GONE
-                tvMarathi.visibility = View.VISIBLE
-                tvHindi.visibility = View.GONE
-            }
-            Utils.LanguageEnum.HINDI -> {
-                defaultLocale = Locale("hi")
-                updateLocale(defaultLocale.language)
-                tvEng.visibility = View.GONE
-                tvMarathi.visibility = View.GONE
-                tvHindi.visibility = View.VISIBLE
-            }
-        }
-        llAge.visibility = View.VISIBLE
     }
 
     private fun ScrollView.focusOnView(toView: View) {
@@ -387,17 +359,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 
-    private fun updateLocale(language: String) {
-        if (language != "en") {
-            recreate()
-            val locale = Locale(language)
-            Locale.setDefault(locale)
-
-            val res = this.resources
-            val config = Configuration(res.configuration)
-            config.locale = locale
-            res.updateConfiguration(config, res.displayMetrics)
-        }
+    private fun setSelectedLayout(view: TextView) {
+        view.setBackgroundResource(R.drawable.bg_textselected)
+        view.setTextColor(ContextCompat.getColor(this, R.color.white))
     }
 
+    private fun setUnSelectedLayout(view: TextView) {
+        view.setBackgroundResource(R.drawable.bg_textwhite)
+        view.setTextColor(ContextCompat.getColor(this, R.color.txtcolor))
+    }
 }
